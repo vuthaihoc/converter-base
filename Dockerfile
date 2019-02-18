@@ -18,6 +18,6 @@ RUN apt-get update && \
     mkdir setup && cd setup && \
     git clone https://github.com/vuthaihoc/basic_fonts.git && rm -rf basic_fonts/.git && \
     git clone https://gitlab.com/vuthaihoc/libreoffice_linux_6.1.git && rm -rf libreoffice_linux_6.1/.git && \
-    mv -R basic_fonts/* /usr/share/fonts/ && fc-cache -fv && fc-list && \
+    mv basic_fonts/* /usr/share/fonts/ && fc-cache -fv && fc-list && \
     dpkg -i libreoffice_linux_6.1/*.deb && cd / && rm -rf setup && \
-    apt-get purge git && apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt-get remove --purge git -y && apt-get clean && rm -rf /var/lib/apt/lists/*
