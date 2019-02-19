@@ -13,11 +13,15 @@ RUN apt-get update && \
     mkdir -p /usr/share/man/man1 && \
         apt-get install libcups2 libcairo2 \
             libxinerama1 libsm6 libdbus-glib-1-2 poppler-utils qpdf ghostscript exiftool pdf2htmlex \
-            fonts-dejavu fonts-lato fonts-lmodern ttf-dejavu ttf-unifont ttf-freefont ttf-liberation git \
+            fonts-dejavu fonts-lato fonts-lmodern ttf-dejavu ttf-unifont ttf-freefont ttf-liberation git locales \
             -y && \
     mkdir setup && cd setup && \
     git clone https://github.com/vuthaihoc/basic_fonts.git && rm -rf basic_fonts/.git && \
     git clone https://gitlab.com/vuthaihoc/libreoffice_linux_6.1.git && rm -rf libreoffice_linux_6.1/.git && \
     mv basic_fonts/* /usr/share/fonts/ && fc-cache -fv && fc-list && \
     dpkg -i libreoffice_linux_6.1/*.deb && cd / && rm -rf setup && \
-    apt-get remove --purge git -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+    locale-gen C.UTF-8 && \
+    /usr/sbin/update-locale LANG=C.UTF-8 && \
+    apt-get remove --purge git locales -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8
