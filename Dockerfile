@@ -17,11 +17,10 @@ RUN apt-get update && \
             -y && \
     mkdir setup && cd setup && \
     git clone https://github.com/vuthaihoc/basic_fonts.git && rm -rf basic_fonts/.git && \
-    git clone https://gitlab.com/vuthaihoc/libreoffice_linux_6.1.git && rm -rf libreoffice_linux_6.1/.git && \
     mv basic_fonts/* /usr/share/fonts/ && fc-cache -fv && fc-list && \
-    dpkg -i libreoffice_linux_6.1/*.deb && cd / && rm -rf setup && \
-    locale-gen C.UTF-8 && \
-    /usr/sbin/update-locale LANG=C.UTF-8 && \
+    cd / && rm -rf setup && \
+    locale-gen en_US.UTF-8 && \
+    /usr/sbin/update-locale LANG=en_US.UTF-8 && \
     apt-get remove --purge git locales -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
