@@ -19,8 +19,8 @@ RUN apt-get update && \
     git clone https://github.com/vuthaihoc/basic_fonts.git && rm -rf basic_fonts/.git && \
     mv basic_fonts/* /usr/share/fonts/ && fc-cache -fv && fc-list && \
     cd / && rm -rf setup && \
-    locale-gen en_US.UTF-8 && \
-    /usr/sbin/update-locale LANG=en_US.UTF-8 && \
+    locale-gen C.UTF-8 && \
+    /usr/sbin/update-locale LANG=C.UTF-8 && \
     apt-get remove --purge git locales -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8
